@@ -3,9 +3,10 @@ import React from "react"
 const NavCategories = () =>{
 
     const categories = [
-        {id:1, name: "Para el asador"},
-        {id:2, name: "Para la parrilla"},
-        {id:2, name: "Para los comensales"},
+        {id:1, name: "Inicio"},
+        {id:2, name: "Para el asador"},
+        {id:3, name: "Para la parrilla"},
+        {id:4, name: "Para los comensales"},
     ];
 return(
     <nav style={style.nav}>
