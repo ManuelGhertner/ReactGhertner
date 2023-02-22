@@ -1,14 +1,14 @@
 import React from "react";
 import Button from '@mui/material/Button';
-
+import {Link} from "react-router-dom";
 const Item = ({product}) =>{
     return(
-            <a href="" style = {style.card} >
+            <Link to={"product/${id}" } style = {style.card} >
                 <img style = {style.image} src={product.image} alt={product.name} />
                 <h3 style = {style.nombre}>{product.name}</h3>
                 <p style = {style.precio}>${product.price}</p>
                 <Button style = {style.boton} variant="contained">Agregar al carrito</Button>
-            </a>
+            </Link>
     )
 }
 

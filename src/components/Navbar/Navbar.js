@@ -4,16 +4,20 @@ import parrilla from "../../assets/parrilla.png"
 import NavCategories from "./NavCategories";
 import CartWidget from "./CartWidget"
 import { padding } from "@mui/system";
+import {Link} from "react-router-dom";
 
 const Navbar = () =>{
     return (
         <div style={style.container}>
-            <a style={style.logo} href="">
+            <Link style={style.logo} to="/">
                 <img style={style.image} src={parrilla} alt="Icono tienda" />
                 <h1 style={style.marca}>A la Parri</h1>
-            </a>
+            </Link>
             <NavCategories/>
-            <CartWidget/>
+            <Link to="/carrito">
+                <CartWidget/>
+            </Link>
+        
         </div>
     )
 }
