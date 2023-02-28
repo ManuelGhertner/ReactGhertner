@@ -23,7 +23,8 @@ const DetailPromise = new Promise ((res,rej)=>{
        
 
 const ItemDetailContainer = () =>{
-    const [detail, setDetails] = useState([]);
+    const [detail, setDetails] = useState({});
+    const [loading, setLoading] = useState(true);
     const {id} = useParams();
 
    
@@ -31,23 +32,31 @@ const ItemDetailContainer = () =>{
         DetailPromise
         .then((data) => {
             console.log(data);
-        setDetails(data.find(detailProduct => (detailProduct.id === id) ));
-        console.log(data) 
+        setDetails(data.find(detailProduct => (detailProduct.id === (parseInt(id) ))));
+        console.log(data); 
+        setLoading(false);
   
         })
         .catch((err)=>{
+            
             console.error(err);
         })
        
     }, []);
 
-   
 
-
+    // useEffect( () => {
+    //     if (loading){
+    //         setTimeout( () => {
+    //             setLoading(true);
+    //         },2000);
+    //     }
+    //    },[loading]);
+    //    console.log(loading)
     return(
         <>  
+        {!loading ?  (<ItemDetail detail={detail} />) : (<h1>Cargando...</h1>)}
 
-         <ItemDetail detail={detail}/>
 
         </>
        

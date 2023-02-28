@@ -6,7 +6,7 @@ const ItemDetail = ({detail}) =>{
     return(
       <>
      
-        {/* <h1> hola {detail.nombre}</h1> */}
+        <h1> hola {detail.nombre}</h1>
       </> 
     )
 }
