@@ -1,9 +1,12 @@
 import React from "react"; 
 
+
 const ItemDetail = ({detail}) =>{
+  console.log(detail);
     return(
       <>
-<div>asd</div>
+     
+        {/* <h1> hola {detail.nombre}</h1> */}
       </> 
     )
 }

@@ -29,6 +29,7 @@ const ItemListContainer = ({greeting}) => {
         .then((data)=>{
         
         (name == undefined) ? setProducts(data) : setProducts(data.filter(initialProducts => (initialProducts.category == name)));
+      
 
         })
         .catch((err)=>{
@@ -36,7 +37,6 @@ const ItemListContainer = ({greeting}) => {
         })
     }, [name]);
 
-    
 
 
     return(

@@ -2,6 +2,7 @@ import React from "react";
 import Item from "./Item";
 
 const ItemList = ({products}) =>{
+  
     return(
       <>
         <div style={style.productos}>
@@ -12,7 +13,6 @@ const ItemList = ({products}) =>{
       </> 
     )
 }
-
 const style = {
   productos:{
       display: "flex",

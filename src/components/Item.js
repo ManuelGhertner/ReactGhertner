@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import {Link} from "react-router-dom";
 const Item = ({product}) =>{
     return(
-            <Link to={"product/${id}" } style = {style.card} >
+            <Link to={`product/${product.id}`} style = {style.card} >
                 <img style = {style.image} src={product.image} alt={product.name} />
                 <h3 style = {style.nombre}>{product.name}</h3>
                 <p style = {style.precio}>${product.price}</p>
