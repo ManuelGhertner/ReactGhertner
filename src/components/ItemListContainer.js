@@ -21,6 +21,7 @@ const itemPromise = new Promise ((res,rej)=>{
 
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
     const {name} = useParams();
     console.log(name)
 
@@ -30,7 +31,7 @@ const ItemListContainer = ({greeting}) => {
         
         (name == undefined) ? setProducts(data) : setProducts(data.filter(initialProducts => (initialProducts.category == name)));
       
-
+        setLoading(false);
         })
         .catch((err)=>{
             console.error(err);
@@ -42,8 +43,8 @@ const ItemListContainer = ({greeting}) => {
     return(
         <>
         <h1 style={style.bienvenida}>{greeting}</h1>
-
-            <ItemList products={products}/>
+        {!loading ?  (<ItemList products={products}/>) : (<h1>Cargando...</h1>)}
+            
         </>
     );
 
