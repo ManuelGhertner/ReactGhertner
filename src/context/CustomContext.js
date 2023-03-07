@@ -49,6 +49,9 @@ export const CustomProvider = ({children}) => {
         }
     }
 
+
+   
+
     return(
    <CustomContext.Provider value ={{cart, addProduct,removeProduct}}>{children}</CustomContext.Provider>
     )
