@@ -1,13 +1,19 @@
-import React from "react"
+import React, {useContext} from "react"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { display } from "@mui/system";
+import { CustomContext } from "../../context/CustomContext";
 
 const CartWidget = () =>{
-    const cantidad = 6
+
+    const { productsCant } = useContext(CustomContext);
     return (
         <>
         <a href="" style={style.carrito}>
-            <h2 style={style.cantidad}>{cantidad}</h2>
+
+            {productsCant === 0? <h2 style={style.cero}>0</h2> :  <h2 style={style.cantidad}>{productsCant}</h2>}
+           
+            
+            
             <ShoppingCartIcon sx={{ fontSize: 40 }} />         
         </a>
   
@@ -28,6 +34,11 @@ const style = {
         fontSize: 32,
         paddingRight: 10
     },
+    cero:{
+        paddingRight: 10,
+        fontSize: 32,
+        opacity: 0,
+    }
 
 }
 export default CartWidget

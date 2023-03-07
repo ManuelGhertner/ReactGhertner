@@ -6,6 +6,11 @@ export const CustomContext = createContext ();
 
 export const CustomProvider = ({children}) => {
     const [cart, setCart] = useState([]);
+    const [productsCant, setProductsCant] = useState(0);
+
+    useEffect(() =>{
+        setProductsCant(cart.reduce((previous, current) => previous + current.cantidad,0));
+    },[cart]);
 
     console.log(cart);
     const addProduct = (product, cantidad) =>{
@@ -53,7 +58,7 @@ export const CustomProvider = ({children}) => {
    
 
     return(
-   <CustomContext.Provider value ={{cart, addProduct,removeProduct}}>{children}</CustomContext.Provider>
+   <CustomContext.Provider value ={{cart, addProduct,removeProduct, productsCant}}>{children}</CustomContext.Provider>
     )
 }
 
