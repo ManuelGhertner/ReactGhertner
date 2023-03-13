@@ -26,27 +26,45 @@ const ItemListContainer = ({greeting}) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const {name} = useParams();
+   
     console.log(name)
-
     useEffect(()=>{
-
-        const productsCollection = collection(db, "products");
-        const q =query(productsCollection,where("category","==","parrilla"));
-        getDocs(q).then((data) => {
-          const list = data.docs.map(product => {
-            return{
-                ...product.data(),
-                id: product.id
-            }
+        if (name) {
+          const productsCollection = collection(db, "products");
+          const q =query(productsCollection,where("category","==", name));
+          getDocs(q).then((data) => {
+            const list = data.docs.map(product => {
+              return{
+                  ...product.data(),
+                  id: product.id
+              }
+            })
+          //    (name ===  undefined) ? setProducts(list) : setProducts(list.filter(initialProducts => (initialProducts.category === name)));
+        
+          // setLoading(false);
+            setProducts(list);
+            console.log(list);
           })
-        //    (name ===  undefined) ? setProducts(list) : setProducts(list.filter(initialProducts => (initialProducts.category === name)));
+          .catch(()=>{setError(true) })
       
-        // setLoading(false);
-          setProducts(list);
-          console.log(list);
-        })
-        .catch(()=>{setError(true) })
-    
+        }else{
+          const productsCollection = collection(db, "products");
+          getDocs(productsCollection).then((data) => {
+            const list = data.docs.map(product => {
+              return{
+                  ...product.data(),
+                  id: product.id
+              }
+            })
+          //    (name ===  undefined) ? setProducts(list) : setProducts(list.filter(initialProducts => (initialProducts.category === name)));
+        
+          // setLoading(false);
+            setProducts(list);
+            console.log(list);
+          })
+          .catch(()=>{setError(true) })
+        }
+
 
 
 

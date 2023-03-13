@@ -1,5 +1,6 @@
 import React from "react"
 import {Link, NavLink} from "react-router-dom";
+import ItemListContainer from "../ItemListContainer";
 
 const NavCategories = () =>{
 
@@ -10,11 +11,14 @@ const NavCategories = () =>{
         {id:4, name: "Para los comensales",route:"categories/comensales"},
     ];
 return(
+  
     <nav style={style.nav}>
     {
         categories.map((category)=>{
             return <Link key={category.id} style={style.category} to={category.route}>{category.name}</Link>
         })
+        
+       
     }
     </nav>
 
