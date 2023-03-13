@@ -14,15 +14,15 @@ const ItemDetail = ({ detail }) => {
     addProduct(detail, count);
 
   };
-
+console.log(detail);
   return (
     <>
       <article style={style.container}>
         <img style={style.image} src={detail.image} alt={detail.image} />
         <div style={style.details}>
-          <h2 style={style.name}>{detail.nombre}</h2>
-          <h3 style={style.descripcion}>{detail.descripcion}</h3>
-          <p style={style.precio}>${detail.precio}</p>
+          <h2 style={style.name}>{detail.name}</h2>
+          <h3 style={style.descripcion}>{detail.description}</h3>
+          <p style={style.precio}>${detail.price}</p>
 
           {isButtonPressed ? (
             <Link to="/carrito">

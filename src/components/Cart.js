@@ -9,7 +9,7 @@ const Cart = () => {
   const { addProduct } = useContext(CustomContext);
 
   const total = cart.reduce(
-    (previous, current) => previous + current.cantidad * current.precio,
+    (previous, current) => previous + current.cantidad * current.price,
     0
   );
 
@@ -45,12 +45,12 @@ const Cart = () => {
                       src={producto.image}
                       alt={producto.image}
                     />
-                    <h1 style={style.nombre}>{producto.nombre}</h1>
-                    <h1 style={style.nombre}>${producto.precio}</h1>
+                    <h1 style={style.nombre}>{producto.name}</h1>
+                    <h1 style={style.nombre}>${producto.price}</h1>
 
                     <h1 style={style.nombre}>{producto.cantidad}</h1>
-                    <h1 style={style.nombre}>
-                       ${producto.cantidad * producto.precio}
+                    <h1 style={style.name}>
+                       ${producto.cantidad * producto.price}
                     </h1>
 
                     <Button
