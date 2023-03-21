@@ -10,40 +10,38 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import CheckOut from "./CheckOut";
 
-const Cart = () => {
+
+const Cart = ({setIdCompra}) => {
   const { cart } = useContext(CustomContext);
   const { removeProduct } = useContext(CustomContext);
-  const { addProduct } = useContext(CustomContext);
-  const [idCompra, setIdCompra] = useState("");
-  const total = cart.reduce(
-    (previous, current) => previous + current.cantidad * current.price,
-    0
-  );
+  const { totalCarrito } = useContext(CustomContext);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // const buyer = {
-  //   name: "juan",
-  //   apellido: "Perez",
-  //   email: "juanperez@gmail.com",
-  // };
-  // useEffect(() => {
-  //   const handlerClickSell = () => {
-  //     const sellCollection = collection(db, "Sells");
-  //     addDoc(sellCollection, {
-  //       buyer,
-  //       items: cart,
-  //       total,
-  //       time: serverTimestamp(),
-  //     }).then((result) => console.log(result.id));
-  //   };
-  // }, []);
-  // console.log(idCompra);
+
+   const  handlerClickSell = () => {
+    const sellCollection = collection(db, "Sells");
+    addDoc(sellCollection, {
+
+      items: cart,
+      totalCarrito,
+      time: serverTimestamp(),
+    })
+      .then((result) => {
+   console.log(result.id);
+        setIdCompra(result.id);
+      })
+      .catch((ERROR) => setError(true))
+      .finally(() => setLoading(false));
+  }; 
+ 
+  
   // const handlerStock = () => {
   //   const docReference = doc(db, "products", "algun id");
   //   updateDoc(docReference, { stock: 50 });
-  // // };
-  // <CheckOut idCompra={idCompra} />;
+  // };
+
   return (
     <>
       {cart.length === 0 ? (
@@ -94,13 +92,15 @@ const Cart = () => {
               );
             })}
             <div>
-              <h1 style={style.total}> Total: ${total} </h1>
+              <h1 style={style.total}> Total: ${totalCarrito} </h1>
 
-              {/* <Link to="/checkout">
-                <Button style={style.boton} onClick={handlerClickSell}>
+              
+                <Button style={style.boton} onClick = {()=>handlerClickSell()} >
                   Comprar
                 </Button>
-              </Link> */}
+
+              
+             
             </div>
 
             {console.log(cart)}

@@ -5,8 +5,15 @@ export const CustomContext = createContext();
 export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [productsCant, setProductsCant] = useState(0);
+  const [totalCarrito, setTotalCarrito]= useState(0);
 
   useEffect(() => {
+    const total = cart.reduce(
+      (previous, current) => previous + current.cantidad * current.price,
+      0,
+     
+    );
+   setTotalCarrito(total)
     setProductsCant(
       cart.reduce((previous, current) => previous + current.cantidad, 0)
     );
@@ -49,7 +56,7 @@ export const CustomProvider = ({ children }) => {
 
   return (
     <CustomContext.Provider
-      value={{ cart, addProduct, removeProduct, productsCant }}
+      value={{ cart, addProduct, removeProduct, productsCant, totalCarrito }}
     >
       {children}
     </CustomContext.Provider>
