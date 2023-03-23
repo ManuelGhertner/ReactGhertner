@@ -8,35 +8,47 @@ import {
   serverTimestamp,
   doc,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
-
-const Cart = ({setIdCompra}) => {
+const Cart = ({ setIdCompra }) => {
   const { cart } = useContext(CustomContext);
   const { removeProduct } = useContext(CustomContext);
   const { totalCarrito } = useContext(CustomContext);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  
 
 
-   const  handlerClickSell = () => {
+
+
+
+  const handlerClickSell = () => {
     const sellCollection = collection(db, "Sells");
     addDoc(sellCollection, {
-
       items: cart,
       totalCarrito,
       time: serverTimestamp(),
     })
       .then((result) => {
-   console.log(result.id);
+        console.log(result.id);
         setIdCompra(result.id);
       })
-      .catch((ERROR) => setError(true))
+      .catch((error) => setError(true))
       .finally(() => setLoading(false));
-  }; 
- 
-  
+  };
+
+
+
+// useEffect(()=>{
+
+
+
+// },[cart])
+
+  // setCantidades(cantActualizada)
+
   // const handlerStock = () => {
   //   const docReference = doc(db, "products", "algun id");
   //   updateDoc(docReference, { stock: 50 });
@@ -66,7 +78,7 @@ const Cart = ({setIdCompra}) => {
               }
               return (
                 <>
-                  {console.log(cart.length)}
+               
                   <div style={style.container} key={producto.id}>
                     <img
                       style={style.image}
@@ -94,16 +106,12 @@ const Cart = ({setIdCompra}) => {
             <div>
               <h1 style={style.total}> Total: ${totalCarrito} </h1>
 
-              
-                <Button style={style.boton} onClick = {()=>handlerClickSell()} >
-                  Comprar
-                </Button>
-
-              
-             
+              <Button style={style.boton} onClick={() => handlerClickSell()}>
+                Comprar
+              </Button>
             </div>
 
-            {console.log(cart)}
+           
           </div>
         </>
       )}

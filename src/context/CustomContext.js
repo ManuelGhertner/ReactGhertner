@@ -53,10 +53,12 @@ export const CustomProvider = ({ children }) => {
       );
     }
   };
-
+const resetCart = () =>{
+  setCart([]);
+}
   return (
     <CustomContext.Provider
-      value={{ cart, addProduct, removeProduct, productsCant, totalCarrito }}
+      value={{ cart, addProduct, removeProduct, productsCant, totalCarrito, resetCart }}
     >
       {children}
     </CustomContext.Provider>
