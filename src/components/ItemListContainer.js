@@ -23,7 +23,6 @@ const ItemListContainer = ({ greeting }) => {
           });
 
           setProducts(list);
-          console.log(list);
         })
         .catch(() => {
           setError(true);
