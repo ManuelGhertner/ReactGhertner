@@ -14,7 +14,7 @@ const Router = (()=>{
         if (idCompra.length > 0) {
             navigate("/checkout")
         }
-        console.log(idCompra,"validado en app");
+        console.log(idCompra,"validado en router");
                 },[idCompra])
     return(
       <> 

@@ -9,7 +9,6 @@ const ItemListContainer = ({ greeting }) => {
   const [error, setError] = useState(false);
   const { name } = useParams();
 
-  console.log(name);
   useEffect(() => {
     if (name) {
       const productsCollection = collection(db, "products");
@@ -41,7 +40,7 @@ const ItemListContainer = ({ greeting }) => {
           });
 
           setProducts(list);
-          console.log(list);
+         
         })
         .catch(() => {
           setError(true);

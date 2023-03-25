@@ -2,14 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { CustomContext } from "../context/CustomContext";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  doc,
-  updateDoc,
-  getDoc,
-} from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 
 const Cart = ({ setIdCompra }) => {
@@ -18,11 +11,6 @@ const Cart = ({ setIdCompra }) => {
   const { totalCarrito } = useContext(CustomContext);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-  
-
-
-
-
 
   const handlerClickSell = () => {
     const sellCollection = collection(db, "Sells");
@@ -32,27 +20,11 @@ const Cart = ({ setIdCompra }) => {
       time: serverTimestamp(),
     })
       .then((result) => {
-        console.log(result.id);
         setIdCompra(result.id);
       })
       .catch((error) => setError(true))
       .finally(() => setLoading(false));
   };
-
-
-
-// useEffect(()=>{
-
-
-
-// },[cart])
-
-  // setCantidades(cantActualizada)
-
-  // const handlerStock = () => {
-  //   const docReference = doc(db, "products", "algun id");
-  //   updateDoc(docReference, { stock: 50 });
-  // };
 
   return (
     <>
@@ -76,9 +48,7 @@ const Cart = ({ setIdCompra }) => {
               if (producto.cantidad >= producto.stock) {
                 producto.cantidad = producto.stock;
               }
-              return (
-                <>
-               
+              return (  <>
                   <div style={style.container} key={producto.id}>
                     <img
                       style={style.image}
@@ -110,8 +80,6 @@ const Cart = ({ setIdCompra }) => {
                 Comprar
               </Button>
             </div>
-
-           
           </div>
         </>
       )}

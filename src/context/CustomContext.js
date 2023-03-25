@@ -5,21 +5,19 @@ export const CustomContext = createContext();
 export const CustomProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [productsCant, setProductsCant] = useState(0);
-  const [totalCarrito, setTotalCarrito]= useState(0);
+  const [totalCarrito, setTotalCarrito] = useState(0);
 
   useEffect(() => {
     const total = cart.reduce(
       (previous, current) => previous + current.cantidad * current.price,
-      0,
-     
+      0
     );
-   setTotalCarrito(total)
+    setTotalCarrito(total);
     setProductsCant(
       cart.reduce((previous, current) => previous + current.cantidad, 0)
     );
   }, [cart]);
 
-  console.log(cart);
   const addProduct = (product, cantidad) => {
     const isInCart = cart.find(
       (productInCart) => productInCart.id === product.id
@@ -53,12 +51,19 @@ export const CustomProvider = ({ children }) => {
       );
     }
   };
-const resetCart = () =>{
-  setCart([]);
-}
+  const resetCart = () => {
+    setCart([]);
+  };
   return (
     <CustomContext.Provider
-      value={{ cart, addProduct, removeProduct, productsCant, totalCarrito, resetCart }}
+      value={{
+        cart,
+        addProduct,
+        removeProduct,
+        productsCant,
+        totalCarrito,
+        resetCart,
+      }}
     >
       {children}
     </CustomContext.Provider>

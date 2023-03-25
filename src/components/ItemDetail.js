@@ -8,13 +8,10 @@ const ItemDetail = ({ detail }) => {
   const [isButtonPressed, setIsButtonPressed] = useState(false);
   const { addProduct } = useContext(CustomContext);
 
-
   const onAdd = (count) => {
     setIsButtonPressed(true);
     addProduct(detail, count);
-
   };
-console.log(detail);
   return (
     <>
       <article style={style.container}>
@@ -26,14 +23,12 @@ console.log(detail);
 
           {isButtonPressed ? (
             <Link to="/carrito">
-              <Button variant="contained" style={style.boton} >Finalizar compra</Button>
+              <Button variant="contained" style={style.boton}>
+                Finalizar compra
+              </Button>
             </Link>
           ) : (
-             
-
-            <ItemCount stock={detail.stock} onAdd={onAdd}  />
-          
-
+            <ItemCount stock={detail.stock} onAdd={onAdd} />
           )}
         </div>
       </article>
